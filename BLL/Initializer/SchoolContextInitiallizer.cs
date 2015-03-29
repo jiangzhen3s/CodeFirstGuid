@@ -15,12 +15,14 @@ namespace BLL.Initializer
             var fali = new Student
             {
                 Name = "ALFKI",
-                Age = 10
+                Age = 10,
+                Birthday = DateTime.Now
             };
             var jz = new Student
             {
                 Name = "jz",
-                Age = 20
+                Age = 20,
+                Birthday = DateTime.Now.AddDays(1)
             };
 
             ctx.Students.Add(fali);
@@ -55,6 +57,6 @@ namespace BLL.Initializer
                 Course = csharp
             });
         }
-        
+
     }
 }

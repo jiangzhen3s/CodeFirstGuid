@@ -11,12 +11,16 @@ namespace BLL.Models
     public class Student
     {
         public int ID { get; set; }
+
         [MaxLength(100)]
+        [Index(IsClustered = false)]
         public string Name { get; set; }
 
         public int? Age { get; set; }
 
         [MaxLength(100)]
         public string ClassName { get; set; }
+
+        public DateTime Birthday { get; set; }
     }
 }

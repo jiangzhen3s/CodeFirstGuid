@@ -38,7 +38,7 @@ namespace BLL
 #endif
         {
             Database.SetInitializer(new Initializer.SchoolContextInitializer_Oracle());
-           // Database.SetInitializer<SchoolContext>(null);
+            // Database.SetInitializer<SchoolContext>(null);
         }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
@@ -53,11 +53,12 @@ namespace BLL
         {
             //以存储过程 函数支持
             modelBuilder.Conventions.Add(new FunctionsConvention<SchoolContext>("SCHOOL"));
+            modelBuilder.Conventions.Add(new FunctionsConvention("SCHOOL", typeof(Functions)));
 
             //直接跑这行不能开启 2015-03-29
             //目前code first 不能生成视图，视图需要通过原生sql创建
             //因此migration的时候取消视图的创建（默认会简表的）
-          //  modelBuilder.Ignore<VStudent>();
+            //  modelBuilder.Ignore<VStudent>();
 
             //一律使用架构名
 #if !mysql
@@ -103,6 +104,16 @@ namespace BLL
         public virtual ObjectResult<Student> GetAllTableData()
         {
             return ObjectContextAdapter.ObjectContext.ExecuteFunction<Student>("GETALLTABLEDATA");
+        }
+
+
+    }
+    public class Functions
+    {
+        [DbFunction("CodeFirstDatabaseSchema", "DATETIMETOSTRING")]
+        public static string DateTimeToString(DateTime time)
+        {
+            throw new NotSupportedException();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Sample
             SchoolContext db = new SchoolContext();
             StringBuilder sb = new StringBuilder();
             //db.Database.Log = sql => sb.Append(sql);
-           // db.Database.Log = Console.WriteLine;
+             db.Database.Log = Console.WriteLine;
 
             //执行数据库初始化
             db.Database.Initialize(false);
@@ -32,6 +32,15 @@ namespace Sample
             foreach (var vstu in db.VStudents)
             {
                 vstu.Dump();
+            }
+            Console.WriteLine("sql中调用函数");
+            {
+                var x = from stu in db.Students
+                           select Functions.DateTimeToString(stu.Birthday);
+                foreach (var item in x)
+                {
+                    item.Dump();
+                }
             }
             Console.WriteLine();
 

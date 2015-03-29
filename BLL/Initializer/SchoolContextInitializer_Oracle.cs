@@ -11,6 +11,7 @@ namespace BLL.Initializer
     {
         public override void InitializeDatabase(SchoolContext context)
         {
+            //虽然是DropCreateDatabaseAlways，但是视图没有被删除
             context.Database.ExecuteSqlCommand(
                             @"drop view VSTUDENT"
                             );
@@ -54,6 +55,17 @@ namespace BLL.Initializer
 --inner join course c on sc.""Course_ID""= c.id;
                 end;
                 ");
+
+            context.Database.ExecuteSqlCommand(
+                @"
+create or replace function DateTimeToString
+(V_Time date)
+return varchar
+as
+begin
+return to_char(V_Time, 'dd/mm/yyyy hh24:mi:ss');
+end;
+");
         }
     }
 
