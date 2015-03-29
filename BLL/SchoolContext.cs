@@ -54,6 +54,7 @@ namespace BLL
             //以存储过程 函数支持
             modelBuilder.Conventions.Add(new FunctionsConvention<SchoolContext>("SCHOOL"));
 
+            //直接跑这行不能开启 2015-03-29
             //目前code first 不能生成视图，视图需要通过原生sql创建
             //因此migration的时候取消视图的创建（默认会简表的）
           //  modelBuilder.Ignore<VStudent>();
