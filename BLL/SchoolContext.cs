@@ -47,7 +47,7 @@ namespace BLL
 
         public virtual DbSet<VStudent> VStudents { get; set; }
 
-
+        public virtual DbSet<BLL.Model.ComplexType> ComplexTypeTest { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

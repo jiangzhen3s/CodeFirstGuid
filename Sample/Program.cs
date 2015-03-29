@@ -18,7 +18,7 @@ namespace Sample
             SchoolContext db = new SchoolContext();
             StringBuilder sb = new StringBuilder();
             //db.Database.Log = sql => sb.Append(sql);
-             db.Database.Log = Console.WriteLine;
+            db.Database.Log = Console.WriteLine;
 
             //执行数据库初始化
             db.Database.Initialize(false);
@@ -36,7 +36,7 @@ namespace Sample
             Console.WriteLine("sql中调用函数");
             {
                 var x = from stu in db.Students
-                           select Functions.DateTimeToString(stu.Birthday);
+                        select Functions.DateTimeToString(stu.Birthday);
                 foreach (var item in x)
                 {
                     item.Dump();
@@ -69,6 +69,19 @@ namespace Sample
             //{
 
             //}
+
+            //使用事务
+            using (db.Database.BeginTransaction())
+            {
+                var jz = db.Students.Where(stu => stu.Name == "jz").Single();
+                jz.Age = 100;
+                var csharp = db.Courses.Where(c => c.Name == "C#").Single();
+                csharp.Name = "CSharp";
+                db.SaveChanges();
+            }
+
+
+
         }
     }
     internal static class Helper

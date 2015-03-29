@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Initializer\SchoolContextInitializer_Oracle.cs" />
     <Compile Include="Initializer\SchoolContextInitiallizer.cs" />
+    <Compile Include="Model\ComplexType.cs" />
     <Compile Include="SchoolContext.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\SC.cs" />
