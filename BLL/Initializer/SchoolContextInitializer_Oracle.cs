@@ -13,13 +13,22 @@ namespace BLL.Initializer
         {
             //虽然是DropCreateDatabaseAlways，但是视图没有被删除
             context.Database.ExecuteSqlCommand(
-                            @"drop view VSTUDENT"
+                            @"
+declare 
+      num   number; 
+begin 
+      select count(1) into num from User_views where View_NAME = 'VSTUDENT' ; 
+      if   num=1   then 
+          execute immediate 'drop view VSTUDENT'; 
+      end   if; 
+end; "
                             );
+
             base.InitializeDatabase(context);
 
             context.Database.ExecuteSqlCommand(
                 @"drop table VSTUDENT"
-                );
+            );
             context.Database.ExecuteSqlCommand(
                 @"create or replace view VStudent
                     as  

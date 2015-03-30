@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {    
+    /// <summary>
+    /// 视图以V开头
+    /// </summary>
     public class VStudent
     {
         public int ID { get; set; }
