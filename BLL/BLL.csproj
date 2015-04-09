@@ -64,7 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDbContext.cs" />
+    <Compile Include="BaseDbContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Initializer\SchoolContextInitializer_Oracle.cs" />
     <Compile Include="Initializer\SchoolContextInitiallizer.cs" />
     <Compile Include="Model\ComplexType.cs" />
