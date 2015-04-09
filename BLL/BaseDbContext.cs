@@ -1,6 +1,6 @@
 ﻿//#define sqlserver
-//#define oracle
-#define mysql
+#define oracle
+//#define mysql
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,13 +23,17 @@ namespace BLL
 #endif
     public class BaseDbContext : DbContext
     {
+        public string Schema { get; set; }
         /// <summary>
         /// if not exists then The target context 'BLL.ASPDBContext' is not constructible. Add a default constructor or provide an implementation of IDbContextFactory.
         /// </summary>
-        public BaseDbContext()
+        public BaseDbContext(string schema, string nameOrConnectionString)
+            : base(nameOrConnectionString)
         {
-            //Database.SetInitializer(new Initializer.SchoolContextInitializer_Oracle());
-            // Database.SetInitializer<SchoolContext>(null);
+            Schema = schema.ToUpper();
+#if oracle
+            Database.SetInitializer(new Initializer.SchoolContextInitializer_Oracle());
+#endif
         }
 
 
@@ -38,7 +42,7 @@ namespace BLL
             //一律使用架构名
 #if !mysql
             //mysql 不需要设置 应该是连接字符串中已经有了
-            modelBuilder.HasDefaultSchema("SCHOOL");
+            modelBuilder.HasDefaultSchema(Schema);
 #endif
 #if oracle
             //所有列明大写

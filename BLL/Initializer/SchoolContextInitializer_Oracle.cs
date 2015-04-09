@@ -30,6 +30,9 @@ end; "
                 @"drop table VSTUDENT"
             );
             context.Database.ExecuteSqlCommand(
+                @"drop sequence SQ_VSTUDENT"
+            );
+            context.Database.ExecuteSqlCommand(
                 @"create or replace view VStudent
                     as  
                     select ID,NAME from STUDENT");
