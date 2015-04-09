@@ -1,0 +1,13 @@
+﻿
+drop table sc;
+drop table course;
+drop table student;
+drop table COMPLEXTYPE;
+drop table innertype;
+DROP TABLE "__MigrationHistory" ;
+
+drop sequence SQ_STUDENT;
+drop sequence SQ_SC;
+drop sequence  SQ_COURSE;
+drop sequence SQ_COMPLEXTYPE;
+drop sequence sq_innertype;
