@@ -69,6 +69,11 @@
     </Compile>
     <Compile Include="Initializer\SchoolContextInitializer_Oracle.cs" />
     <Compile Include="Initializer\SchoolContextInitiallizer.cs" />
+    <Compile Include="Migrations\201504091336554_InitialCreate.cs" />
+    <Compile Include="Migrations\201504091336554_InitialCreate.Designer.cs">
+      <DependentUpon>201504091336554_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ComplexType.cs" />
     <Compile Include="SchoolContext.cs" />
     <Compile Include="Model\Course.cs" />
@@ -82,6 +87,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504091336554_InitialCreate.resx">
+      <DependentUpon>201504091336554_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
